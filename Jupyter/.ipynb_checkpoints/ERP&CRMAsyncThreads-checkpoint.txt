@@ -1,0 +1,44 @@
+CRM - ERP en el mercado
+1. Odoo (ERP/CRM)
+Lenguaje de Programación:
+● Python: Odoo es principalmente un framework escrito en Python. El backend de Odoo está construido sobre el framework web de Python llamado Werkzeug y PostgreSQL como sistema de gestión de bases de datos. Python es el principal lenguaje usado para desarrollar módulos, lógica de negocio y procesos de backend.
+● JavaScript (en el frontend): Para la interfaz de usuario, Odoo utiliza JavaScript, principalmente con el framework jQuery y OWL (Odoo Web Library) para componentes reactivos y dinámicos.
+Conceptos de Hilos y Asincronía:
+● Asincronía: Odoo emplea conceptos de asincronía principalmente en la interacción con el frontend, donde se utiliza Ajax para realizar solicitudes HTTP asincrónicas al servidor sin recargar la página. Para las tareas del backend, Odoo emplea el manejo de procesos asincrónicos de Python, especialmente en operaciones que requieren integración con sistemas externos o tareas pesadas (como la exportación masiva de datos, generación de informes complejos, etc.).
+○ Odoo 13 y versiones posteriores tienen soporte para colas de trabajo y tareas asincrónicas a través de la librería Celery o Redis para manejar operaciones en segundo plano, como el envío de correos electrónicos, la creación de informes y la integración con servicios externos.
+● Hilos: Odoo en su núcleo no utiliza hilos explícitos para manejar concurrencia, pero el uso de workers y colaboradores en segundo plano (como las tareas programadas y cron jobs) permite manejar múltiples solicitudes o procesos simultáneamente. Gunicorn, que es el servidor de aplicaciones que ejecuta Odoo, puede manejar múltiples hilos y procesos para mejorar la escalabilidad.
+Ejemplo de Asincronía en Odoo:
+● Odoo puede ejecutar tareas como la generación de informes de ventas, que se realizan en segundo plano, permitiendo que el usuario continúe con otras tareas mientras espera. Estas tareas se manejan con Celery, lo que permite la ejecución no bloqueante de procesos.
+2. Salesforce (CRM)
+Lenguaje de Programación:
+● Apex: Salesforce utiliza su propio lenguaje de programación propietario llamado Apex, que está basado en Java. Apex es un lenguaje orientado a objetos y se usa para escribir lógica de negocio en el lado del servidor. Apex es similar a Java, pero con una sintaxis optimizada para la plataforma Salesforce.
+● Visualforce y Lightning Web Components (LWC): Para la interfaz de usuario, Salesforce utiliza Visualforce y Lightning Web Components, que emplean tecnologías web estándar como HTML, CSS, y JavaScript.
+Conceptos de Hilos y Asincronía:
+● Asincronía: Salesforce maneja la asincronía principalmente a través de sus capacidades de Asynchronous Apex. La plataforma permite ejecutar procesos de larga duración o tareas en segundo plano mediante Apex @future methods, Queueable Apex, Batch Apex y Scheduled Apex. Estas capacidades permiten realizar tareas asincrónicas, como el procesamiento de datos, la actualización de registros, y la integración con sistemas externos sin bloquear la interfaz de usuario.
+○ Apex @future: Utiliza este anotador para ejecutar métodos en segundo plano. Es ideal para tareas que no necesitan ser completadas inmediatamente.
+○ Queueable Apex: Permite manejar trabajos en cola y se utiliza para tareas que requieren más de un paso de ejecución.
+○ Batch Apex: Se usa para el procesamiento masivo de registros, permitiendo la segmentación de trabajos en lotes que se ejecutan de manera asincrónica.
+● Hilos: Salesforce en general no expone control directo de hilos al desarrollador, pero utiliza mecanismos como el procesamiento por lotes y la cola de trabajos (Queueable Apex) para manejar múltiples tareas en paralelo de manera eficiente. Salesforce Queues y Batch Apex permiten manejar el procesamiento paralelo sin necesidad de lidiar directamente con hilos.
+Ejemplo de Asincronía en Salesforce:
+● Un ejemplo clásico de asincronía en Salesforce es la actualización masiva de registros de clientes mediante Batch Apex, donde los registros se procesan por lotes en segundo plano, mejorando la escalabilidad y la experiencia del usuario.
+3. SAP (ERP)
+Lenguaje de Programación:
+● ABAP: SAP utiliza ABAP (Advanced Business Application Programming) como su principal lenguaje de programación. ABAP es un lenguaje de programación orientado a eventos y está diseñado específicamente para trabajar con el sistema SAP. Se utiliza tanto para el desarrollo de aplicaciones backend como para la creación de interfaces de usuario en sistemas SAP.
+● Java y JavaScript: En la plataforma SAP Cloud Platform, se utilizan también lenguajes como Java y JavaScript (con SAPUI5 para la interfaz de usuario) para las aplicaciones en la nube.
+Conceptos de Hilos y Asincronía:
+● Asincronía: SAP emplea asincronía en la mayoría de sus sistemas de integración, especialmente en la integración de módulos o con sistemas externos mediante IDocs, RFCs (Remote Function Calls) y Web Services. Estas integraciones permiten que los procesos no bloqueen la ejecución de otras tareas mientras esperan la respuesta de sistemas externos.
+○ ABAP Asynchronous Function Modules: Permiten ejecutar funciones en segundo plano sin que bloqueen el proceso principal. Esto es útil para procesos largos, como la integración con sistemas de terceros o el procesamiento de datos en grandes volúmenes.
+○ SAP PI/PO (Process Integration/Process Orchestration): Utiliza una arquitectura asincrónica para la integración de sistemas, donde los mensajes se entregan a través de un bus de integración de manera no bloqueante.
+● Hilos: SAP generalmente maneja la ejecución concurrente de procesos mediante el uso de servidores de aplicaciones que manejan múltiples hilos de manera transparente. SAP no expone la gestión directa de hilos a los desarrolladores, pero la infraestructura subyacente maneja la concurrencia utilizando work processes y background jobs. Estos trabajos en segundo plano pueden ejecutarse en paralelo en diferentes hilos según la configuración del sistema.
+Ejemplo de Asincronía en SAP:
+● La integración de datos en tiempo real entre SAP y sistemas externos, como una plataforma de comercio electrónico, utiliza RFC y IDocs de manera asincrónica para intercambiar datos sin bloquear el sistema SAP.
+4. HubSpot (CRM)
+Lenguaje de Programación:
+● JavaScript: HubSpot utiliza principalmente JavaScript tanto en el frontend como en el backend. Para la programación de la lógica de negocio en el frontend, HubSpot se basa en JavaScript junto con React.js para la creación de componentes interactivos.
+● HubL: Para la creación de plantillas y contenido dinámico en el frontend, HubSpot utiliza su propio lenguaje de plantillas llamado HubL (HubSpot Markup Language).
+Conceptos de Hilos y Asincronía:
+● Asincronía: HubSpot implementa asincronía en la mayoría de las interacciones del CRM mediante el uso de APIs RESTful. La plataforma permite realizar solicitudes API asincrónicas para la obtención y actualización de datos sin que estas bloqueen la ejecución del resto de las operaciones. Además, el workflow automation de HubSpot también permite la ejecución de tareas en segundo plano de forma asincrónica.
+○ APIs Asincrónicas: Las llamadas a las APIs RESTful de HubSpot pueden realizarse de manera asincrónica para manejar múltiples peticiones sin bloquear la interfaz.
+● Hilos: Aunque HubSpot no proporciona un control explícito de hilos, la plataforma maneja la ejecución concurrente de las operaciones a través de sus servicios backend y microservicios, que permiten manejar tareas paralelamente de manera eficiente sin que el usuario final note bloqueos en el sistema.
+Ejemplo de Asincronía en HubSpot:
+● En HubSpot, la integración con servicios de terceros como plataformas de correo electrónico o herramientas de análisis puede realizarse de manera asincrónica a través de las APIs de HubSpot, mejorando la eficiencia al permitir que las tareas se
