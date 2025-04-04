@@ -14,7 +14,7 @@ class Post(models.Model):
     status = models.CharField(
         max_length=2,
         choices=Status,
-        default=Status.DRAFT
+        default=Status.RAFT
 )
 
 
